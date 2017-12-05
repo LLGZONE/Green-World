@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "apollo-server-koa": "^1.2.0",
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.3.0"
+  }
+}
