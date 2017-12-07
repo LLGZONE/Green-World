@@ -1,8 +1,11 @@
 {
   "dependencies": {
     "apollo-server-koa": "^1.2.0",
+    "graphql": "^0.11.7",
+    "graphql-tools": "^2.12.0",
     "koa": "^2.4.1",
     "koa-bodyparser": "^4.2.0",
-    "koa-router": "^7.3.0"
+    "koa-router": "^7.3.0",
+    "lodash": "^4.17.4"
   }
 }
