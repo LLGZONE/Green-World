@@ -1,5 +1,5 @@
 const resolvers = {
-  Query: {
-    user
+  User: {
+    bonus: () =>
   }
 }
