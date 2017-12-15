@@ -27,7 +27,6 @@ create table cloth (
 
 create table food (
     id serial primary key,
-    type text not null,
     hun int not null default 0,
     su int not null default 0,
     img_dir text not null,
