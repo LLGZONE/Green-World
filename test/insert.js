@@ -1,3 +1,4 @@
+const knex = require('../src/connector')
 const Bonus = require('../src/models/Bonus')
 const User = require('../src/models/User')
 
@@ -9,11 +10,9 @@ User.addUser({
   uid: '356432',
 }).then(() => console.log('add User'))
   .catch(error => console.log(error.detail))
-
-User.getUser('356432')
-  .then(user=>console.log(user))
-
-Bonus.getBonus('356432')
-  .then(bonus=>console.log(bonus))
-
-module.exports = knex
+  .then(() => {
+    User.getUser('356432')
+      .then(user=>console.log(user))
+    Bonus.getBonus('356432')
+      .then(bonus=>console.log(bonus))
+  })

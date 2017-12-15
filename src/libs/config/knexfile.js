@@ -1,7 +1,7 @@
 const secrets = require('../secrets')
 
 module.exports = {
-  test: {
+  development: {
     client: 'pg',
     version: '7.4.0',
     connection: {

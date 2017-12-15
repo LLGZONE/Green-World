@@ -11,9 +11,12 @@ class User {
   }
 
   static addUser(info) {
-    Bonus.init(info.user_id)
-    return knex('users')
-      .insert(info)
+      return knex('users')
+        .insert(info)
+        .then(() => {
+          return Bonus
+            .init(info.uid)
+        })
   }
 
   static updateUser(uid, info) {

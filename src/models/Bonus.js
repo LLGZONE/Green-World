@@ -2,18 +2,19 @@ const knex = require('../connector')
 
 class Bonus {
   static init(user_id) {
-    knex('bonus')
+    return knex('bonus')
       .insert({
         user_id,
       })
   }
+
   static getBonus(user_id) {
     return knex('bonus')
       .where({
         user_id
       })
       .then((row) => {
-        return row.bonus
+        return row[0]
       })
   }
 
