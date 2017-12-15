@@ -50,12 +50,14 @@ create table recycle (
     user_id text not null unique,
     recycle_date date not null,
     recycle_time time not null，
+    reduce_bonus real not null,
     foreign key (user_id) references users(uid)
 );
 
-create step (
+create steps (
     id serial primary key,
-    step_date date not null,
+    step_date date not null default now(),
     steps int not null,
     add_bonus real not null,
+    reduce_carbon int,
 );
