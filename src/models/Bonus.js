@@ -1,7 +1,13 @@
-const knex = require('knex')
+const knex = require('../connector')
 
 class Bonus {
-  getBonus(user_id) {
+  static init(user_id) {
+    knex('bonus')
+      .insert({
+        user_id,
+      })
+  }
+  static getBonus(user_id) {
     return knex('bonus')
       .where({
         user_id
@@ -11,7 +17,7 @@ class Bonus {
       })
   }
 
-  addBonus(user_id, bonus) {
+  static addBonus(user_id, bonus) {
     return knex('bonus')
       .where({
         user_id
@@ -19,7 +25,7 @@ class Bonus {
       .increment('points', bonus)
   }
 
-  reduceBonus(user_id, bonus) {
+  static reduceBonus(user_id, bonus) {
     return knex('bonus')
       .where({
         user_id
@@ -27,3 +33,5 @@ class Bonus {
       .decrement('points', bonus)
   }
 }
+
+module.exports = Bonus

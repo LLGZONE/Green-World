@@ -1,13 +1,13 @@
-
+const secrets = require('../secrets')
 
 module.exports = {
   test: {
     client: 'pg',
     version: '7.4.0',
     connection: {
-      host: 'localhost',
-      user: 'user',
-      password: 'password',
+      host: '127.0.0.1',
+      user: 'ubuntu',
+      password: secrets.dp,
       database: 'test'
     }
   },
@@ -15,9 +15,9 @@ module.exports = {
     client: 'pg',
     version: '7.4.0',
     connection: {
-      host: 'localhost',
+      host: '127.0.0.1',
       user: 'user',
-      password: 'password',
+      password: secrets.dp,
       database: 'GreanWorld'
     }
   }
