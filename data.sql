@@ -1,4 +1,4 @@
-create table user (
+create table users (
     id serial primary key,
     name text not null,
     qq text not null,
@@ -10,7 +10,7 @@ create table user (
 create table bonus (
     id serial primary key,
     points int not null default 0,
-    foreign key (user_id) references user(id)
+    foreign key (user_id) references users(uid)
 );
 
 create table cloth (
@@ -20,7 +20,7 @@ create table cloth (
     add_bonus int not null,
     img_dir text not null,
     add_at timestamp default now(),
-    foreign key (user_id) references user(id)
+    foreign key (user_id) references users(uid)
 );
 
 create table food (
@@ -30,11 +30,11 @@ create table food (
     su int not null default 0,
     img_dir text not null,
     add_at timestamp default now(),
-    foreign key (user_id) references user(id)
+    foreign key (user_id) references users(uid)
 );
 
 create table bus (
     add_at timestamp default now(),
-    foreign key (user_id) references user(id),
+    foreign key (user_id) references users(uid),
     img_dir text not null
 );

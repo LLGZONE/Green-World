@@ -1,11 +1,6 @@
 const User = require('./user/schema')
+const RootQuery = require('./query/schema')
 const Mutation = require('./mutation/schema')
-
-const RootQuery = `
-  type RootQuery {
-    user(id: Int!): User
-  }
-`
 
 const SchemaDefinition = `
   schema {

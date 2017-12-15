@@ -1,7 +1,11 @@
 const knex = require('knex')
 
 class User {
-  addUser(usrId) {
-
+  getUser(uid) {
+    return knex('user')
+      .where({
+        uid
+      })
+      .select()
   }
 }
