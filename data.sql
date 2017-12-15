@@ -21,7 +21,7 @@ create table cloth (
     add_bonus int not null,
     img_dir text not null,
     add_at timestamp default now(),
-    user_id text not null unique,
+    user_id text not null,
     foreign key (user_id) references users(uid)
 );
 
@@ -32,14 +32,14 @@ create table food (
     su int not null default 0,
     img_dir text not null,
     add_at timestamp default now(),
-    user_id text not null unique,
+    user_id text not null,
     foreign key (user_id) references users(uid)
 );
 
 create table bus (
     id serial primary key,
     add_at timestamp default now(),
-    user_id text not null unique,
+    user_id text not null,
     img_dir text not null,
     foreign key (user_id) references users(uid)
 );
