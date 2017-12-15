@@ -12,10 +12,18 @@ class Bonus {
   }
 
   addBonus(user_id, bonus) {
-    knex('bonus')
+    return knex('bonus')
       .where({
         user_id
       })
-      .increment('bonus', bonus)
+      .increment('points', bonus)
+  }
+
+  reduceBonus(user_id, bonus) {
+    return knex('bonus')
+      .where({
+        user_id
+      })
+      .decrement('points', bonus)
   }
 }
