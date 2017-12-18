@@ -1,6 +1,9 @@
 const Bonus = `
   type Bonus {
-    user: [User]
-    points: Int!
+    id: Int!
+    user: User
+    points: Int
   }
 `
+
+module.exports = Bonus

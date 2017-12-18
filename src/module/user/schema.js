@@ -12,4 +12,4 @@ const User = `
   }
 `
 
-export default user
+module.exports = User
