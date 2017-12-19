@@ -1,9 +1,9 @@
 create table users (
     id serial primary key,
-    name text not null,
-    qq text not null,
-    phone text not null,
-    dorm text not null,
+    name text,
+    qq text,
+    phone text,
+    dorm text,
     uid text not null unique
 );
 
@@ -18,7 +18,7 @@ create table cloth (
     id serial primary key,
     type text not null,
     num int not null,
-    add_bonus real not null,
+    add_bonus real,
     img_dir text not null,
     add_at timestamp default now(),
     user_id text not null,
@@ -32,7 +32,7 @@ create table food (
     img_dir text not null,
     add_at timestamp default now(),
     user_id text not null,
-    add_bonus real not null,
+    add_bonus real,
     foreign key (user_id) references users(uid)
 );
 
@@ -41,7 +41,7 @@ create table bus (
     add_at timestamp default now(),
     user_id text not null,
     img_dir text not null,
-    add_bonus real not null,
+    add_bonus real,
     foreign key (user_id) references users(uid)
 );
 
@@ -49,15 +49,16 @@ create table recycle (
     id serial primary key,
     user_id text not null unique,
     recycle_date date not null,
-    recycle_time time not null，
-    reduce_bonus real not null,
+    recycle_time text not null,
+    recycle_place text not null,
+    reduce_bonus real,
     foreign key (user_id) references users(uid)
 );
 
-create steps (
+create table steps (
     id serial primary key,
     step_date date not null default now(),
     steps int not null,
     add_bonus real not null,
-    reduce_carbon int,
+    reduce_carbon real
 );

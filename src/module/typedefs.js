@@ -1,4 +1,5 @@
-const User = require('./user/schema')
+const UserInfo = require('./user/schema')
+const Recycle = require('./recycle/schema')
 const RootQuery = require('./query/schema')
 const Mutation = require('./mutation/schema')
 
@@ -9,4 +10,6 @@ const SchemaDefinition = `
   }
 `
 
-module.exports = [SchemaDefinition, Mutation, RootQuery,User]
+const typedefs = [SchemaDefinition, Mutation, RootQuery, ...UserInfo, Recycle]
+
+module.exports = typedefs

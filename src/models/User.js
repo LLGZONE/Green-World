@@ -10,12 +10,13 @@ class User {
       .then(row => row[0])
   }
 
-  static addUser(info) {
+  static addUser({userId}) {
       return knex('users')
-        .insert(info)
+        .insert({uid: userId})
+        .returning('id')
         .then(() => {
           return Bonus
-            .init(info.uid)
+            .init(userId)
         })
   }
 

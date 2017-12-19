@@ -1,8 +1,16 @@
 const Recycle = `
-  id: Int!
-  recycleDate: String!
-  recycleTime: String!
-  reducedBonus: Float
+  enum TimeRange {
+    MORNING
+    AFTERNOON
+    NIGHT
+  }
+  
+  type Recycle {
+    id: Int!
+    recycleDate: String!
+    recycleTime: TimeRange!
+    reducedBonus: Float
+  }
 `
 
 module.exports = Recycle
