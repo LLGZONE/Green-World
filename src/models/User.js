@@ -12,16 +12,18 @@ class User {
 
   static addUser({userId}) {
       return knex('users')
-        .insert({uid: userId})
         .returning('id')
-        .then(() => {
-          return Bonus
-            .init(userId)
+        .insert({uid: userId})
+        .then((id) => {
+          Bonus.init(userId)
+
+          return id
         })
   }
 
   static updateUser(uid, info) {
     return knex('users')
+      .returning('id')
       .where({
         uid,
       })

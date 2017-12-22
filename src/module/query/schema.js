@@ -1,27 +1,27 @@
 const RootQuery = `
   type RootQuery {
-    user(userId: String!): User
-    bonus(userId: String!): Bonus
-    recycle(userId: String!): Recycle
-    clothLatest(userId: String!): Cloth
+    user(userId: ID!): User
+    bonus(userId: ID!): Bonus
+    recycle(userId: ID!): Recycle
+    clothLatest(userId: ID!): Cloth
     cloth(
-      userId: String!
+      userId: ID!
       startTime: Int
       endTime: Int
     ): [Cloth]!
     bus(
-      userId: String!
+      userId: ID!
       startTime: Int
       endTime: Int
     ): [Bus]!
     food(
-      userId: String!
+      userId: ID!
       startTime: Int
       endTime: Int
     ): [Food]!
-    foodLatest(userId: String!): Food
+    foodLatest(userId: ID!): Food
     steps(
-      userId: String!
+      userId: ID!
       startTime: Int
       endTime: Int
     ): [Steps]

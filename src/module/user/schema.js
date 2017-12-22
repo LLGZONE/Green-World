@@ -7,7 +7,7 @@ const Steps = require('../steps/schema')
 const User = `
   type User {
     id: ID!
-    userId: String
+    userId: ID
     name: String
     phone: String
     qq: String

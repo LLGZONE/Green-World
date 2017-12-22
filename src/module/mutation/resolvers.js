@@ -11,7 +11,7 @@ addFood(userId: ID!, foodInfo: FoodInfo): Food
 const mutation = {
   Mutation: {
     addUser(_, {userId}, context) {
-      return context.User.addUser({userId})
+      return context.User.addUser({userId}).then(([id]) => ({id}))
     },
     updateUser(_, {userId, userInfo}, context) {
       return context.User.updateUser(userId, userInfo)
