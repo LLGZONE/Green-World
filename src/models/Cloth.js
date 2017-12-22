@@ -1,8 +1,15 @@
 const knex = require('../connector')
 
 class Cloth {
-  static add(user_id, {type, add_at, num, add_bonus, img_dir}) {
+  static add(user_id, {
+    type,
+    addedAt: add_at,
+    num,
+    addedBonus: add_bonus,
+    img_dir,
+  }) {
     return knex('cloth')
+      .returning('id')
       .insert({
         user_id,
         type,
@@ -14,11 +21,19 @@ class Cloth {
   }
 
   //查看用户在某个时候段所有衣物相关情况
-  static get(user_id, startTime = 0, endTime = Date.parse('2099-10-01')) {
+  static get(user_id, startTime = '1970/1/1', endTime = '2099/10/01') {
     return knex('cloth')
       .where('user_id', user_id)
       .andWhere('add_at', '>', startTime)
       .andWhere('add_at', '<', endTime)
+      .then(rows => rows.map(row => ({
+        id: row.id,
+        type: row.type,
+        num: row.num,
+        addedBonus: row.add_bonus,
+        imgDir: row.img_dir,
+        addedAt: row.add_at,
+      })))
   }
 
   static getOne(user_id, add_at) {

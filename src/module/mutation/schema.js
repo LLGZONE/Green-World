@@ -15,27 +15,27 @@ const Mutation = `
   
   input StepsInfo {
     steps: Int
-    stepDate: Int
+    stepDate: String
     addedBonus: Float
     reducedCarbon: Int
   }
   
   input BusInfo {
-    addedAt: Int
-    addedBonus: Int
+    addedAt: String
+    addedBonus: Float
   }
   
   input ClothInfo {
     type: String
     num: Int
     addedBonus: Float
-    addedAt: Int
+    addedAt: String
   }
   
   input FoodInfo {
     hun: Int
     su: Int
-    addedAt: Int
+    addedAt: String
     addedBonus: Float
   }
   

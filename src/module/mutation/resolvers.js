@@ -26,16 +26,23 @@ const mutation = {
     },
     addSteps(_, {userId, stepsInfo}, context) {
       return context.Steps.add(userId, stepsInfo)
+        .then(([id]) => ({id}))
     },
-    addBus(_, {userId, stepsInfo}, context) {
-      return context.Bus.add(userId, stepsInfo)
+    addBus(_, {userId, busInfo}, context) {
+      busInfo.img_dir = 'none'
+      return context.Bus.add(userId, busInfo)
+        .then(([id]) => ({id}))
     },
     addCloth(_, {userId, clothInfo}, context) {
+      clothInfo.img_dir = 'none'
       return context.Cloth.add(userId, clothInfo)
+        .then(([id]) => ({id}))
     },
     addFood(_, {userId, foodInfo}, context) {
+      foodInfo.img_dir = 'none'
       return context.Food.add(userId, foodInfo)
-    }
+        .then(([id]) => ({id}))
+    },
   }
 }
 

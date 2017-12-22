@@ -18,12 +18,18 @@ class Bus {
       .then(row => row[0])
   }
   //增加一条乘公交车出行的信息
-  static add(user_id, {add_at, img_dir}) {
+  static add(user_id, {
+    addedAt: add_at,
+    addedBonus: add_bonus,
+    img_dir,
+  }) {
     return knex('bus')
+      .returning('id')
       .insert({
         user_id,
         add_at,
         img_dir,
+        add_bonus,
       })
   }
 

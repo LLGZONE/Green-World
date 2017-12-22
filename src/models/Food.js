@@ -3,6 +3,7 @@ const knex = require('../connector')
 class Food {
   static add(user_id, {hun, su, add_bonus, img_dir}) {
     return knex('food')
+      .returning('id')
       .insert({
         user_id,
         hun,
@@ -12,7 +13,7 @@ class Food {
       })
   }
 
-  static get(user_id, startTime = 0, endTime = Date.parse('2099-10-01')) {
+  static get(user_id, startTime = "1970/1/1", endTime = "2099/10/01") {
     return knex('food')
       .where('user_id', user_id)
       .andWhere('add_at', '>', startTime)
