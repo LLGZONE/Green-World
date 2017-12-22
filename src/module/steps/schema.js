@@ -1,7 +1,7 @@
 const Steps = `
   type Steps {
-    id: Int!
-    stepDate: Int
+    id: ID!
+    stepDate: String
     steps: Int
     addedBonus: Int
     reducedCarbon: Float

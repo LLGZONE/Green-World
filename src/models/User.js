@@ -10,15 +10,13 @@ class User {
       .then(row => row[0])
   }
 
-  static addUser({userId}) {
-      return knex('users')
+  static async addUser({userId}) {
+    const [id] = await knex('users')
         .returning('id')
         .insert({uid: userId})
-        .then((id) => {
-          Bonus.init(userId)
+    await Bonus.init(userId)
 
-          return id
-        })
+    return id
   }
 
   static updateUser(uid, info) {

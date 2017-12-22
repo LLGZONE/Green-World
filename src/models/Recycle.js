@@ -1,13 +1,20 @@
 const knex = require('../connector')
 
 class Recycle {
-  static add(user_id, {recycle_date, recycle_time, reduce_bonus}) {
+  static add(user_id, {
+    recycleDate: recycle_date,
+    recycleTime: recycle_time,
+    reduceBonus: reduce_bonus,
+    recyclePlace: recycle_place,
+  }) {
     return knex('recycle')
+      .returning('id')
       .insert({
         user_id,
         recycle_date,
         recycle_time,
         reduce_bonus,
+        recycle_place,
       })
   }
 

@@ -6,7 +6,7 @@ const Recycle = `
   }
   
   type Recycle {
-    id: Int!
+    id: ID!
     recycleDate: String!
     recycleTime: TimeRange!
     reducedBonus: Float

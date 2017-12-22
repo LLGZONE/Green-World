@@ -20,6 +20,7 @@ class Bonus {
 
   static addBonus(user_id, bonus) {
     return knex('bonus')
+      .returning('id')
       .where({
         user_id
       })

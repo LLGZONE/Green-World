@@ -7,9 +7,10 @@ const Mutation = `
   }
   
   input RecycleInfo {
-    recycleDate: Int
-    recycleTime: String
+    recycleDate: String
+    recycleTime: TimeRange
     recyclePlace: String
+    reduceBonus: Float
   }
   
   input StepsInfo {
