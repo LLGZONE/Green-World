@@ -14,7 +14,7 @@ const mutation = {
       return context.User.addUser({userId}).then(([id]) => ({id}))
     },
     updateUser(_, {userId, userInfo}, context) {
-      return context.User.updateUser(userId, userInfo)
+      return context.User.updateUser(userId, userInfo).then(([id]) => ({id}))
     },
     addBonusPoints(_, {userId, bonusPoints}, context) {
       return context.Bonus.addBonus(userId, points)

@@ -27,7 +27,7 @@ class User {
       .where({
         uid,
       })
-      .insert(info)
+      .update(info)
   }
 }
 
