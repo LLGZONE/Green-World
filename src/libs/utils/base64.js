@@ -27,6 +27,8 @@ function base64ToImageFile(dataString, fileDir) {
   require('fs').writeFile(imagePath, imgBuffer.data, () => {
     console.log('img into filedir :', fileDir)
   })
+
+  return imagePath
 }
 
 module.exports = base64ToImageFile

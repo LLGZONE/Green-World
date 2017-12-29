@@ -23,6 +23,7 @@ const Mutation = `
   input BusInfo {
     addedAt: String
     addedBonus: Float
+    imgBase64: String
   }
   
   input ClothInfo {
@@ -30,6 +31,7 @@ const Mutation = `
     num: Int
     addedBonus: Float
     addedAt: String
+    imgBase64: String
   }
   
   input FoodInfo {
@@ -37,6 +39,7 @@ const Mutation = `
     su: Int
     addedAt: String
     addedBonus: Float
+    imgBase64: String
   }
   
   type Mutation {

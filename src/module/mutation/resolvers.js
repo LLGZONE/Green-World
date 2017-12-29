@@ -1,13 +1,6 @@
-/*
-addUser(userId: ID!): User
-updateUser(userId: ID!, userInfo: UserInfo): User
-addBonusPoints(userId, bonusPoints): Bonus
-addRecycle(userId: ID!, recycleInfo: RecycleInfo): Recycle
-addSteps(userId: ID!, stepsInfo: StepsInfo): Steps
-addBus(userId: ID!, busInfo: BusInfo): Bus
-addCloth(userId: ID!, clothInfo: ClothInfo): Cloth
-addFood(userId: ID!, foodInfo: FoodInfo): Food
-*/
+const getFileDir = require('../../libs/utils/getFileDir')
+const base64ToImageFile = require('../../libs/utils/base64')
+
 const mutation = {
   Mutation: {
     addUser(_, {userId}, context) {
@@ -29,17 +22,23 @@ const mutation = {
         .then(([id]) => ({id}))
     },
     addBus(_, {userId, busInfo}, context) {
-      busInfo.img_dir = 'none'
+      const fileDir = getFileDir(userId, 'bus')
+      busInfo.img_dir = base64ToImageFile(busInfo.imgBase64, fileDir)
+
       return context.Bus.add(userId, busInfo)
         .then(([id]) => ({id}))
     },
     addCloth(_, {userId, clothInfo}, context) {
-      clothInfo.img_dir = 'none'
+      const fileDir = getFileDir(userId, 'cloth')
+      clothInfo.img_dir = base64ToImageFile(clothInfo.imgBase64, fileDir)
+
       return context.Cloth.add(userId, clothInfo)
         .then(([id]) => ({id}))
     },
     addFood(_, {userId, foodInfo}, context) {
-      foodInfo.img_dir = 'none'
+      const fileDir = getFileDir(userId, 'bus')
+      foodInfo.img_dir = base64ToImageFile(foodInfo.imgBase64, fileDir)
+
       return context.Food.add(userId, foodInfo)
         .then(([id]) => ({id}))
     },
