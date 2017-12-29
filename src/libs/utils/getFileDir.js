@@ -1,15 +1,16 @@
 const today = require('../../libs/utils/today')
 const fs = require('fs')
+const mkdirs = require('./mkdirs')
 
 function getFileDir(userId, type) {
-  const fileName = `/home/users/${type}/${today()}/`
+  const dirName = `/home/users/${type}/${today()}/`
 
-  if (fs.existsSync(fileName)) {
-    return fileName
+  if (fs.existsSync(dirName)) {
+    return dirName
   }
 
-  fs.mkdirSync(fileName)
-  return fileName
+  mkdirs(dirName)
+  return dirName
 }
 
 module.exports = getFileDir
