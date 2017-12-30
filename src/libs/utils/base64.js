@@ -22,7 +22,7 @@ function base64ToImageFile(dataString, fileDir) {
     .digest('hex')
   const imageType = imgBuffer.type.match(/\/(.*?)$/)[1]
 
-  const imagePath = `${fileDir}image-${uniqueSHAStr}.${imageType}`
+  const imagePath = `${fileDir}${uniqueSHAStr}.${imageType}`
 
   require('fs').writeFile(imagePath, imgBuffer.data, () => {
     console.log('img into filedir :', fileDir)

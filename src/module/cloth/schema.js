@@ -4,7 +4,7 @@ const Cloth = `
     type: String
     num: Int
     addedBonus: Int!
-    imgDir: String
+    imgDir: [String]!
     addedAt: Int
   }
 `

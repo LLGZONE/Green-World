@@ -1,12 +1,19 @@
 const knex = require('../connector')
 
 class Bus {
-  static get(user_id) {
+  static get(user_id, startTime = '1970/1/1', endTime = '2099/10/01') {
     return knex('bus')
       .where({
         user_id,
       })
-      .select('*')
+      .andWhere('add_at', '>', startTime)
+      .andWhere('add_at', '<', endTime)
+      .then(rows => rows.map(row => ({
+        id: row.id,
+        imgDir: row.img_dir.split('&&'),
+        addAt: row.add_at,
+        addedBonus: row.add_bonus
+      })))
   }
 
   static getOne(user_id, add_at) {

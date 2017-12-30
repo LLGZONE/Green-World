@@ -3,7 +3,7 @@ const Bus = `
     id: Int!
     user: User
     addedAt: Int
-    imgDir: String
+    imgDir: [String]!
     addedBonus: Float
   }
 `

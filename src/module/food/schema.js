@@ -3,7 +3,7 @@ const Food = `
     id: Int!
     hun: Int
     su: Int
-    imgDir: String
+    imgDir: [String]!
     addedAt: Int
    }
 `

@@ -23,21 +23,30 @@ const mutation = {
     },
     addBus(_, {userId, busInfo}, context) {
       const fileDir = getFileDir(userId, 'bus')
-      busInfo.img_dir = base64ToImageFile(busInfo.imgBase64, fileDir)
+
+      busInfo.img_dir = busInfo.imgBase64
+        .map(base64 => base64ToImageFile(base64, fileDir))
+        .join('&&')
 
       return context.Bus.add(userId, busInfo)
         .then(([id]) => ({id}))
     },
     addCloth(_, {userId, clothInfo}, context) {
       const fileDir = getFileDir(userId, 'cloth')
-      clothInfo.img_dir = base64ToImageFile(clothInfo.imgBase64, fileDir)
+
+      clothInfo.img_dir = clothInfo.imgBase64
+        .map(base64 => base64ToImageFile(base64, fileDir))
+        .join('&&')
 
       return context.Cloth.add(userId, clothInfo)
         .then(([id]) => ({id}))
     },
     addFood(_, {userId, foodInfo}, context) {
       const fileDir = getFileDir(userId, 'bus')
-      foodInfo.img_dir = base64ToImageFile(foodInfo.imgBase64, fileDir)
+
+      foodInfo.img_dir = foodInfo.imgBase64
+        .map(base64 => base64ToImageFile(base64, fileDir))
+        .join('&&')
 
       return context.Food.add(userId, foodInfo)
         .then(([id]) => ({id}))

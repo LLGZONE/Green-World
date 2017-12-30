@@ -26,6 +26,9 @@ const query = {
     cloth(_, {userId, startTime, endTime}, context) {
       return context.Cloth.get(userId, startTime, endTime)
     },
+    bus(_, {userId, startTime, endTime}, context) {
+      return context.Bus.get(userId, startTime, endTime)
+    }
   },
 }
 

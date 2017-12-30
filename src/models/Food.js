@@ -18,6 +18,13 @@ class Food {
       .where('user_id', user_id)
       .andWhere('add_at', '>', startTime)
       .andWhere('add_at', '<', endTime)
+      .then(rows => rows.map(row => ({
+        id: row.id,
+        hun: row.hun,
+        su: row.su,
+        imgDir: row.img_dir.split('&&'),
+        addedAt: row.add_at,
+      })))
   }
 
   static getLatest(user_id) {

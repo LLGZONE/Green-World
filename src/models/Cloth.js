@@ -31,7 +31,7 @@ class Cloth {
         type: row.type,
         num: row.num,
         addedBonus: row.add_bonus,
-        imgDir: row.img_dir,
+        imgDir: row.img_dir.split('&&'),
         addedAt: row.add_at,
       })))
   }
