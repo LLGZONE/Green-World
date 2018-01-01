@@ -48,6 +48,12 @@ class Bus {
       })
       .del()
   }
+
+  static update(user_id, info) {
+    return knex('bus')
+      .where({user_id})
+      .update(info)
+  }
 }
 
 module.exports = Bus
