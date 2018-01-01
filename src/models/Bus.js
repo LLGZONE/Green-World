@@ -49,9 +49,9 @@ class Bus {
       .del()
   }
 
-  static update(user_id, info) {
+  static update(user_id, id, info) {
     return knex('bus')
-      .where({user_id})
+      .where({user_id, id})
       .update(info)
   }
 }

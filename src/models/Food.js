@@ -44,9 +44,9 @@ class Food {
   }
 
   //用于误上传时操作
-  static update(user_id, add_at, info) {
+  static update(user_id, id, info) {
     return knex('food')
-      .where({user_id, add_at})
+      .where({user_id, id})
       .update(info)
   }
 }

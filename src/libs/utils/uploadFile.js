@@ -8,7 +8,16 @@ function uploadFile(userId, type, files={}) {
 
   for (let key in files) {
     const file = files[key]
-    const filePath = path.join(fileDir, file.name)
+    const type = file.type.match(/\/(.*?)$/)[1]
+    const crypto = require('crypto')
+    const seed = file.size.toString()
+    console.log(seed)
+    const uniqueSHAStr = crypto
+      .createHash('sha1')
+      .update(seed)
+      .digest('hex')
+    const filePath = path.join(fileDir, `${uniqueSHAStr}.${type}`)
+
     const reader = fs.createReadStream(file.path)
     const writer = fs.createWriteStream(filePath)
     reader.pipe(writer)

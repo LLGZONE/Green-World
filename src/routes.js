@@ -1,14 +1,14 @@
 const router = require('koa-router')()
-const koaBody = require('koa-bodyparser')
+const koaBody = require('koa-body')
 const uploadFile = require('./libs/utils/uploadFile')
 const Bus = require('./models/Bus')
 const Food = require('./models/Food')
 const Cloth = require('./models/Cloth')
 
-router.post('/api/image/:type', koaBody({multipart: true}), async (ctx, next) => {
+router.post('/:type', koaBody({multipart: true}), async (ctx, next) => {
   const type = ctx.params.type
   const acceptType = ['bus', 'food', 'cloth']
-  const userId = ctx.request.body.userId
+  const { userId, id } = ctx.request.body.fields
 
   if (!acceptType.includes(type)) {
     ctx.body = {
@@ -16,20 +16,22 @@ router.post('/api/image/:type', koaBody({multipart: true}), async (ctx, next) =>
     }
   }
 
-  const files = ctx.request.body.files
-  const filePaths = await uploadFile(ctx.request.body.userId, type, files)
-  const filePath = filePaths.join('&&')
+  console.log(id, userId, ctx.request.body)
 
+  const files = ctx.request.body.files
+  const filePaths = uploadFile(ctx.request.body.userId, type, files)
+  const filePath = filePaths.join('&&')
+  console.log('files:', filePath)
   if (type === 'bus') {
-    Bus.update(userId, {img_dir: filePath})
+    await Bus.update(userId, id, {img_dir: filePath})
   }
 
   if (type === 'food') {
-    Food.update(userId, ctx.request.body.addedAt, {img_dir: filePath})
+    await Food.update(userId, id, {img_dir: filePath})
   }
 
   if (type === 'cloth') {
-    Cloth.update(userId, ctx.request.body.addAt, {img_dir: filePath})
+    await Cloth.update(userId, id, {img_dir: filePath})
   }
 
   ctx.body = {

@@ -15,7 +15,7 @@ router.get('/graphql', graphqlKoa({ schema, context }));
 
 router.get('/graphiql', graphiqlKoa({ endpointURL: '/graphql' }));
 
-router.use('/', routes.routes(), routes.allowedMethods())
+router.use('/api/image', routes.routes(), routes.allowedMethods())
 
 app.use(router.routes())
 app.use(router.allowedMethods())

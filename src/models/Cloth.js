@@ -58,9 +58,9 @@ class Cloth {
       .del()
   }
 
-  static update(user_id, add_at, info) {
+  static update(user_id, id, info) {
     return knex('cloth')
-      .where({user_id, add_at})
+      .where({user_id, id})
       .update(info)
   }
 }
