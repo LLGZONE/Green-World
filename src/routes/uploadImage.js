@@ -1,9 +1,9 @@
 const router = require('koa-router')()
 const koaBody = require('koa-body')
-const uploadFile = require('./libs/utils/uploadFile')
-const Bus = require('./models/Bus')
-const Food = require('./models/Food')
-const Cloth = require('./models/Cloth')
+const uploadFile = require('../libs/utils/uploadFile')
+const Bus = require('../models/Bus')
+const Food = require('../models/Food')
+const Cloth = require('../models/Cloth')
 
 router.post('/:type', koaBody({multipart: true}), async (ctx, next) => {
   const type = ctx.params.type
