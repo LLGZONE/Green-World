@@ -4,7 +4,7 @@ create table users (
     qq text,
     phone text,
     dorm text,
-    uid text not null unique
+    uid text not null unique,
     gender int
 );
 

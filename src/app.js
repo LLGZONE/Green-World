@@ -12,6 +12,7 @@ const router = new Router()
 
 app.use(async (ctx, next) => {
   console.log('ip', ctx.ip)
+  await next()
 })
 
 // koaBody is needed just for POST.

@@ -1,5 +1,6 @@
 const Mutation = `
   input UserId {
+    # 微信 getUserInfo 返回
     iv: String!
     encryptedData: String!
     signature: String
@@ -50,7 +51,7 @@ const Mutation = `
   }
   
   type Mutation {
-    setUserId(): 
+    # 若用户已存在，则返回的 errors[0].message 为 'user exists'
     addUser(encrypt: UserId): User
     updateUser(userId: ID!, userInfo: UserInfo): User
     addBonusPoints(userId: ID!, bonusPoints: Float): Bonus
