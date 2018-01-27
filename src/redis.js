@@ -11,10 +11,9 @@ function saveToRedis(token) {
 function getToken(headers) {
   if (headers && headers.authorization) {
     const auth = headers.authorization
-    const part = auth.split(' ')
 
-    if (part.length === 2) {
-      return part[1]
+    if (auth) {
+      return auth
     }
   }
 
@@ -39,11 +38,21 @@ async function veryfiToken(ctx, next) {
   await next()
 }
 
-function expireToken(headers, cb) {
+function expireToken(headers) {
   const token = getToken(headers)
   if (token) {
-    redisClient.remove(token, cb)
+    return new Promise((resolve, reject) => {
+      redisClient.del(token, (err) => {
+        if (err) {
+          reject(404)
+        } else {
+          resolve(200)
+        }
+      })
+    })
   }
+
+  return null
 }
 
 module.exports = {

@@ -10,6 +10,10 @@ const admin = require('./routes/admin')
 const app = new koa()
 const router = new Router()
 
+app.use(async (ctx, next) => {
+  console.log('ip', ctx.ip)
+})
+
 // koaBody is needed just for POST.
 router.post('/graphql', koaBody(), graphqlKoa({ schema, context }));
 router.get('/graphql', graphqlKoa({ schema, context }));

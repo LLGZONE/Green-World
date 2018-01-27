@@ -1,5 +1,7 @@
 const knex = require('../connector')
 const Bonus = require('./Bonus')
+const WXBizDataCrypt = require('../libs/utils/WXBizDataCrypt')
+const appId = require('../libs/secrets')
 
 class User {
   static getUser(uid) {
@@ -10,11 +12,17 @@ class User {
       .then(row => row[0])
   }
 
-  static async addUser({userId}) {
+  static async addUser({iv, encryptedData, signature, sessionKey}) {
+    const pc = new WXBizDataCrypt(appId, sessionKey)
+    const data = pc.decryptData(encryptedData , iv)
+    const { openId, gender, watermark } = data
+    if (watermark.appid !== appId) {
+      return null
+    }
     const [id] = await knex('users')
         .returning('id')
-        .insert({uid: userId})
-    await Bonus.init(userId)
+        .insert({uid: openId, gender})
+    await Bonus.init(openId)
 
     return id
   }

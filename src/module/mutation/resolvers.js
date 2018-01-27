@@ -3,8 +3,8 @@ const base64ToImageFile = require('../../libs/utils/base64')
 
 const mutation = {
   Mutation: {
-    addUser(_, {userId}, context) {
-      return context.User.addUser({userId}).then((id) => ({id}))
+    addUser(_, {encrypt}, context) {
+      return context.User.addUser(encrypt).then((id) => ({id}))
     },
     updateUser(_, {userId, userInfo}, context) {
       return context.User.updateUser(userId, userInfo).then(([id]) => ({id}))

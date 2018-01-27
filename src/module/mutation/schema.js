@@ -1,4 +1,11 @@
 const Mutation = `
+  input UserId {
+    iv: String!
+    encryptedData: String!
+    signature: String
+    sessionKey: String
+  }
+  
   input UserInfo {
     name: String
     qq: String
@@ -43,7 +50,8 @@ const Mutation = `
   }
   
   type Mutation {
-    addUser(userId: ID!): User
+    setUserId(): 
+    addUser(encrypt: UserId): User
     updateUser(userId: ID!, userInfo: UserInfo): User
     addBonusPoints(userId: ID!, bonusPoints: Float): Bonus
     addRecycle(userId: ID!, recycleInfo: RecycleInfo): Recycle

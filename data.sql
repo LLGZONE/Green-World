@@ -5,6 +5,7 @@ create table users (
     phone text,
     dorm text,
     uid text not null unique
+    gender int
 );
 
 create table bonus (
