@@ -2,6 +2,7 @@ const RootQuery = `
   type RootQuery {
     user(userId: ID!): User
     bonus(userId: ID!): Bonus
+    bonusDescription: BonusDescription
     recycle(userId: ID!): Recycle
     clothLatest(userId: ID!): Cloth
     cloth(
@@ -16,9 +17,18 @@ const RootQuery = `
     ): [Bus]!
     food(
       userId: ID!
-      startTime: Int
-      endTime: Int
-    ): [Food]!
+      type: String
+      date: String
+    ): Food!
+    foodEnergy(
+      userId: ID!
+      date: String
+    ): FoodEnergy
+    foodPage(
+      page: Int!
+    ): FoodPage
+    foodSearch(name: String!): [FoodItem]!
+    garbage(name: String): [Garbage]!
     foodLatest(userId: ID!): Food
     steps(
       userId: ID!
@@ -26,6 +36,6 @@ const RootQuery = `
       endTime: Int
     ): [Steps]
   }
-`
+`;
 
-module.exports = RootQuery
+module.exports = RootQuery;

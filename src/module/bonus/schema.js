@@ -2,8 +2,12 @@ const Bonus = `
   type Bonus {
     id: Int!
     user: User
-    points: Int
+    points: Float
   }
-`
 
-module.exports = Bonus
+  type BonusDescription {
+    text: String!
+  }
+`;
+
+module.exports = Bonus;

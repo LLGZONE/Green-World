@@ -1,16 +1,10 @@
 const Recycle = `
-  enum TimeRange {
-    MORNING
-    AFTERNOON
-    NIGHT
-  }
-  
   type Recycle {
     id: ID!
     recycleDate: String!
-    recycleTime: TimeRange!
+    recycleTime: String!
     reducedBonus: Float
   }
-`
+`;
 
-module.exports = Recycle
+module.exports = Recycle;

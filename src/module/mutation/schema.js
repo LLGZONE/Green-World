@@ -1,31 +1,28 @@
 const Mutation = `
   input UserId {
-    # 微信 getUserInfo 返回
-    iv: String!
-    encryptedData: String!
-    signature: String
-    sessionKey: String
+    # wx.login() 调用成功回调函数得到
+    code: String!
   }
   
   input UserInfo {
     name: String
-    qq: String
+    studentId: String
     phone: String
     dorm: String
+    # 院系
+    college: String!
   }
   
   input RecycleInfo {
     recycleDate: String
-    recycleTime: TimeRange
+    recycleTime: String
     recyclePlace: String
-    reduceBonus: Float
   }
   
   input StepsInfo {
-    steps: Int
-    stepDate: String
-    addedBonus: Float
-    reducedCarbon: Int
+    date: String
+    encryptedData: String
+    iv: String
   }
   
   input BusInfo {
@@ -43,15 +40,13 @@ const Mutation = `
   }
   
   input FoodInfo {
-    hun: Int
-    su: Int
-    addedAt: String
-    addedBonus: Float
-    imgBase64: [String]!
+    type: String
+    date: String
+    foodsCode: [String]!
+    calory: Float!
   }
   
   type Mutation {
-    # 若用户已存在，则返回的 errors[0].message 为 'user exists'
     addUser(encrypt: UserId): User
     updateUser(userId: ID!, userInfo: UserInfo): User
     addBonusPoints(userId: ID!, bonusPoints: Float): Bonus
@@ -59,8 +54,8 @@ const Mutation = `
     addSteps(userId: ID!, stepsInfo: StepsInfo): Steps
     addBus(userId: ID!, busInfo: BusInfo): Bus
     addCloth(userId: ID!, clothInfo: ClothInfo): Cloth
-    addFood(userId: ID!, foodInfo: FoodInfo): Food
+    addFood(userId: ID!, foodInfo: FoodInfo): ID!
   }
-`
+`;
 
-module.exports = Mutation
+module.exports = Mutation;

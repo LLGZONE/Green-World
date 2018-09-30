@@ -65,3 +65,5 @@ typings/
 test/
 
 src/libs/secrets.js
+
+.vscode/

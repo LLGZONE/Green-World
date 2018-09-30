@@ -1,4 +1,4 @@
-const router = require('koa-router')()
+/*const router = require('koa-router')()
 const koaParser = require('koa-bodyparser')
 const crypto = require('crypto')
 const { ap, an, sk } = require('../libs/secrets')
@@ -43,3 +43,4 @@ router.delete('/', koaParser(), async (ctx, next) => {
 router.post('/bonus/:userid', veryfiToken, )
 
 module.exports = router
+*/

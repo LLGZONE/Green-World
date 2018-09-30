@@ -1,10 +1,10 @@
 const Steps = `
   type Steps {
     id: ID!
-    stepDate: String
+    date: String
     steps: Int
-    addedBonus: Int
-    reducedCarbon: Float
+    addBonus: Int
+    reduceCarbon: Float
   }
-`
-module.exports = Steps
+`;
+module.exports = Steps;

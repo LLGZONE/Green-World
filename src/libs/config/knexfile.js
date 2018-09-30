@@ -1,4 +1,4 @@
-const secrets = require('../secrets')
+const secrets = require('../secrets');
 
 module.exports = {
   development: {
@@ -6,7 +6,7 @@ module.exports = {
     version: '7.4.0',
     connection: {
       host: '127.0.0.1',
-      user: 'ubuntu',
+      user: 'hustbi',
       password: secrets.dp,
       database: 'test'
     }
@@ -21,4 +21,4 @@ module.exports = {
       database: 'GreanWorld'
     }
   }
-}
+};
