@@ -5,7 +5,7 @@ const schema = require('./schema');
 const context = require('./models');
 const { graphqlKoa, graphiqlKoa } = require('apollo-server-koa');
 const routes = require('./routes/uploadImage');
-// const admin = require('./routes/admin');
+const admin = require('./routes/admin');
 
 const app = new koa();
 const router = new Router();
@@ -22,7 +22,7 @@ router.get('/graphql', graphqlKoa({ schema, context }));
 router.get('/graphiql', graphiqlKoa({ endpointURL: '/graphql' }));
 
 router.use('/api/image', routes.routes(), routes.allowedMethods());
-// router.use('/admin', admin.routes(), admin.allowedMethods())
+router.use('/admin', admin.routes(), admin.allowedMethods());
 
 app.use(router.routes());
 app.use(router.allowedMethods());

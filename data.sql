@@ -46,6 +46,15 @@ create table recycle (
     foreign key (user_id) references users(uid)
 );
 
+create table recycle_items (
+    id serial primary key,
+    stdid text not null,
+    paper int not null,
+    bottle int not null,
+    cloth int not null,
+    date date,
+);
+
 create table steps (
     id serial primary key,
     user_id text not null,
