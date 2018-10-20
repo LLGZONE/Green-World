@@ -3,7 +3,7 @@ const koaParser = require('koa-bodyparser');
 const crypto = require('crypto');
 const { ap, an, sk } = require('../libs/secrets');
 const knex = require('../connector');
-const { today } = require('../libs/utils/today');
+const today = require('../libs/utils/today');
 const Bonus = require('../models/Bonus');
 const User = require('../models/User');
 
@@ -19,76 +19,86 @@ router.post('/user', koaParser(), async (ctx, next) => {
     return;
   }
 
+  ctx.session.logedIn = true;
+
   ctx.body = {
     error: ''
   };
-
-  ctx.logedIn = true;
-
-  await next();
 });
 
 router.get('/consumers/all', async (ctx, next) => {
-  if (ctx.logedIn) {
-    const res = []
-    const users = await knex('users').select('*')
-    await Promise.all(users.map(async (user) => {
-      const bonus = await Bonus.getBonus(user.uid);
-      user.bonus = bonus;
-      delete user.uid;
-      delete user.session_key;
-      res.push(user)
-    }))
+  if (ctx.session.logedIn) {
+    const res = [];
+    const users = await knex('users').select('*');
+    await Promise.all(
+      users.map(async user => {
+        const bonus = await Bonus.getBonus(user.uid);
+        user.bonus = bonus.points;
+        delete user.uid;
+        delete user.session_key;
+        res.push(user);
+      })
+    );
     ctx.body = {
       data: res
-    }
+    };
   } else {
     ctx.redirect('/');
   }
 });
 
 router.post('/recycle', koaParser(), async (ctx, next) => {
-  if (ctx.logedIn) {
-    const stdid = ctx.request.stdid;
-    // 以 kg 为单位
-    const paper = ctx.request.paper;
-    const bottle = ctx.request.bottle;
-    const cloth = ctx.request.cloth;
-  
-    const date = doday;
-    let id = "";
-  
-    try {
-      const [user] = await knex('users').where({ student_id: stdid }).select('*')
-      id = user.uid;
-    } catch {
-      ctx.body = {
-        error: "register first"
-      }
-    }
-  
-    await knex('recycle_items').insert({
-      stdid = "",
+  if (ctx.session.logedIn) {
+    const {
+      stdid = '',
+      // kg为单位
       paper = 0,
       bottle = 0,
+      cloth = 0
+    } = ctx.request.body;
+    const date = today();
+    let id = '';
+
+    try {
+      const [user] = await knex('users')
+        .where({ student_id: stdid })
+        .select('*');
+      if (!user) {
+        throw new Error('register');
+      } else {
+        id = user.uid;
+      }
+    } catch (e) {
+      ctx.body = {
+        error: 'register first'
+      };
+      // 否则后面仍然会执行
+      return;
+    }
+
+    await knex('recycle_items').insert({
+      stdid,
+      paper,
+      bottle,
       date,
       cloth
     });
-  
-    await Bonus.addBonus(id, paper * 6 + bottle * 0.5)
-  
-    ctx.body = {
-      error: ""
+    try {
+      await Bonus.addBonus(id, paper * 6 + bottle * 0.5);
+    } catch {
+      console.log('id', id);
     }
+
+    ctx.body = {
+      error: ''
+    };
   } else {
     ctx.redirect('/');
   }
-
-  await next();
 });
 
 router.post('/garbage', async (ctx, next) => {
-  await next()
-})
+  await next();
+});
 
 module.exports = router;

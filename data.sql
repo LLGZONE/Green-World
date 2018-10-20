@@ -52,7 +52,7 @@ create table recycle_items (
     paper int not null,
     bottle int not null,
     cloth int not null,
-    date date,
+    date date
 );
 
 create table steps (

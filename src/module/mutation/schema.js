@@ -10,7 +10,7 @@ const Mutation = `
     phone: String
     dorm: String
     # 院系
-    college: String!
+    college: String
   }
   
   input RecycleInfo {
